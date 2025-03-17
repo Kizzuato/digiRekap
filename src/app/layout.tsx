@@ -16,15 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-    const data = await getSheetData()
-    console.log("data: ", data)
+    // const data = await getSheetData()
+    // console.log("data: ", data)
   return (
     <html lang="en">
       <body className={`${outfit.variable} dark:bg-gray-900`}>
-        yo 
-        {/* <ThemeProvider>
+        <ThemeProvider>
           <SidebarProvider>{children}</SidebarProvider>
-        </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );
