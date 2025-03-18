@@ -1,8 +1,8 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 
-// import { SidebarProvider } from "@/context/SidebarContext";
-// import { ThemeProvider } from "@/context/ThemeContext";
+import { SidebarProvider } from "@/context/SidebarContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 // import { getSheetData } from "@/_lib/readSheet";
 const outfit = Outfit({
@@ -21,11 +21,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} dark:bg-gray-900`}>
-        {/* <ThemeProvider> */}
-          {/* <SidebarProvider>
-            </SidebarProvider> */}
-            {children}
-        {/* </ThemeProvider> */}
+        <ThemeProvider>
+          <SidebarProvider>{children}</SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
