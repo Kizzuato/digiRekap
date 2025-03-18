@@ -1,17 +1,20 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
-import path from "path";
+// import path from "path";
 
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
-const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json");
+// const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json");
 const spreadsheetId = process.env.SHEET_ID;
 const range = "Sheet1!A1:E20";
 
 async function getAuth() {
-    return new google.auth.GoogleAuth({
-      keyFile: CREDENTIALS_PATH,
-      scopes: SCOPES,
-    });
+  return new google.auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    },
+    scopes: SCOPES,
+  });
   }
   
   // **GET: Ambil Data dari Google Sheets**
