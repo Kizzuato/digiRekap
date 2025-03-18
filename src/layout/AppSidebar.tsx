@@ -15,7 +15,7 @@ import {
   PieChartIcon,
   PlugInIcon,
   TableIcon,
-  UserCircleIcon,
+  // UserCircleIcon,
 } from "../icons/index";
 import SidebarWidget from "./SidebarWidget";
 

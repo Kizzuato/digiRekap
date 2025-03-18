@@ -4,7 +4,7 @@ import "./globals.css";
 // import { SidebarProvider } from "@/context/SidebarContext";
 // import { ThemeProvider } from "@/context/ThemeContext";
 
-import { getSheetData } from "@/_lib/readSheet";
+// import { getSheetData } from "@/_lib/readSheet";
 const outfit = Outfit({
   variable: "--font-outfit-sans",
   subsets: ["latin"],
