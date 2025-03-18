@@ -15,12 +15,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const getSystemTheme = (): Theme => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return "light"; // Default theme untuk server-side rendering
   };
 
-  const [theme, setTheme] = useState<Theme>(getSystemTheme);
+  const [theme, setTheme] = useState<Theme>("light"); // Default sementara
 
   useEffect(() => {
     const updateTheme = () => {
@@ -33,15 +36,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     };
 
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", updateTheme);
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", updateTheme);
 
-    // Set tema saat pertama kali mount
-    updateTheme();
+      // Set tema saat pertama kali mount
+      updateTheme();
 
-    return () => {
-      mediaQuery.removeEventListener("change", updateTheme);
-    };
+      return () => {
+        mediaQuery.removeEventListener("change", updateTheme);
+      };
+    }
   }, []);
 
   return (
