@@ -10,7 +10,7 @@ import MonthlySalesChart from "@/components/ecommerce/MonthlySalesChart";
 export const metadata: Metadata = {
   title:
     "Dashboard",
-  description: "This is Next.js Home for TailAdmin Dashboard Template",
+  description: "This is Next.js Dashboard for digiRekap page",
 };
 
 export default function Ecommerce() {
