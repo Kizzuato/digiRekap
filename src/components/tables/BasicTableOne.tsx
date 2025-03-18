@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function BasicTableOne() {
   const [data, setData] = useState<string[][]>([]);
-  const [newEntry, setNewEntry] = useState(["", "", "", ""]);
+  // const [newEntry, setNewEntry] = useState(["", "", "", ""]);
 
   useEffect(() => {
     fetchData();
@@ -16,15 +16,15 @@ export default function BasicTableOne() {
     setData(result || []);
   };
 
-  const handleAdd = async () => {
-    await fetch("/api/sheets", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: newEntry }),
-    });
-    setNewEntry(["", "", "", ""]);
-    fetchData();
-  };
+  // const handleAdd = async () => {
+  //   await fetch("/api/sheets", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ data: newEntry }),
+  //   });
+  //   setNewEntry(["", "", "", ""]);
+  //   fetchData();
+  // };
 
   const handleUpdate = async (index: number) => {
     const updatedEntry = prompt("Masukkan data baru (pisah dengan koma)", data[index]?.join(","))?.split(",");

@@ -5,7 +5,7 @@ import path from "path";
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json");
 const spreadsheetId = process.env.SHEET_ID;
-const range = "Sheet1!A:Z";
+const range = "Sheet1!A1:E20";
 
 async function getAuth() {
     return new google.auth.GoogleAuth({
