@@ -11,16 +11,21 @@ const outfit = Outfit({
 });
 
 export default async function RootLayout({
-}) {
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
 
     // const data = await getSheetData()
     // console.log("data: ", data)
   return (
     <html lang="en">
       <body className={`${outfit.variable} dark:bg-gray-900`}>
-        {/* <ThemeProvider>
-          <SidebarProvider>{children}</SidebarProvider>
-        </ThemeProvider> */}
+        {/* <ThemeProvider> */}
+          {/* <SidebarProvider>
+            </SidebarProvider> */}
+            {children}
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
