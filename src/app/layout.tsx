@@ -12,7 +12,7 @@ const outfit = Outfit({
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: Readonly<{ 
   children: React.ReactNode;
 }>) {
 
