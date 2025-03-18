@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 import path from "path";
 
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
-const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json"); // Pastikan file ini ada di root proyek
-const spreadsheetId = process.env.SHEET_ID; // Masukkan ID Google Sheet kamu
-const range = "Sheet1!A1:D10"; // Sesuaikan dengan range data
+const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json");
+const spreadsheetId = process.env.SHEET_ID;
+const range = "Sheet1!A1:D10";
 
 async function getAuth() {
     return new google.auth.GoogleAuth({
