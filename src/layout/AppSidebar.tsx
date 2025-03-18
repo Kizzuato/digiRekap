@@ -36,7 +36,7 @@ const navItems: NavItem[] = [
   {
     name: "Rekap keuangan",
     icon: <TableIcon />,
-    path: "/basic-tables"
+    path: "/rekap-keuangan"
   },
   {
     icon: <UserIcon />,
