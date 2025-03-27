@@ -88,7 +88,7 @@ export default function BasicTableOne() {
           className="border p-2 rounded dark:bg-gray-800 dark:text-white"
         />
         {(searchQuery || dateRange.start || dateRange.end) && (
-        <button onClick={clearFilters} className="">
+        <button onClick={clearFilters} className="dark:text-white">
           <CloseLineIcon />
         </button>
         )}

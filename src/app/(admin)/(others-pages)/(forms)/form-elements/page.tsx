@@ -8,7 +8,7 @@ import InputStates from "@/components/form/form-elements/InputStates";
 import RadioButtons from "@/components/form/form-elements/RadioButtons";
 import SelectInputs from "@/components/form/form-elements/SelectInputs";
 import TextAreaInput from "@/components/form/form-elements/TextAreaInput";
-import ToggleSwitch from "@/components/form/form-elements/ToggleSwitch";
+// import ToggleSwitch from "@/components/form/form-elements/ToggleSwitch";
 import { Metadata } from "next";
 import React from "react";
 
@@ -34,7 +34,7 @@ export default function FormElements() {
           <FileInputExample />
           <CheckboxComponents />
           <RadioButtons />
-          <ToggleSwitch />
+          {/* <ToggleSwitch /> */}
           <DropzoneComponent />
         </div>
       </div>
