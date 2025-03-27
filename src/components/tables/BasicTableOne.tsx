@@ -5,7 +5,7 @@ import { CloseLineIcon } from "@/icons/index";
 
 export default function BasicTableOne() {
   const [data, setData] = useState<string[][]>([]);
-  const [filteredData, setFilteredData] = useState<string[][]>([]);
+  const [filteredData] = useState<string[][]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +16,7 @@ export default function BasicTableOne() {
   }, []);
 
   useEffect(() => {
-    filterData();
+    // filterData();
   }, [searchQuery, dateRange, data]);
 
   const fetchData = async () => {
@@ -25,23 +25,23 @@ export default function BasicTableOne() {
     setData(result || []);
   };
 
-  const filterData = () => {
-    let filtered = data.slice(1);
+  // const filterData = () => {
+  //   let filtered = data.slice(1);
 
-    if (searchQuery) {
-      filtered = filtered.filter((row) => row[2].toLowerCase().includes(searchQuery.toLowerCase()));
-    }
+  //   if (searchQuery) {
+  //     filtered = filtered.filter((row) => row[2].toLowerCase().includes(searchQuery.toLowerCase()));
+  //   }
 
-    if (dateRange.start && dateRange.end) {
-      filtered = filtered.filter((row) => {
-        const date = new Date(row[1]); // Asumsi kolom ke-2 adalah tanggal
-        return date >= new Date(dateRange.start) && date <= new Date(dateRange.end);
-      });
-    }
+  //   if (dateRange.start && dateRange.end) {
+  //     filtered = filtered.filter((row) => {
+  //       const date = new Date(row[1]); // Asumsi kolom ke-2 adalah tanggal
+  //       return date >= new Date(dateRange.start) && date <= new Date(dateRange.end);
+  //     });
+  //   }
 
-    setFilteredData(filtered);
-    setCurrentPage(1);
-  };
+  //   setFilteredData(filtered);
+  //   setCurrentPage(1);
+  // };
 
   // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setSearchQuery(e.target.value);
