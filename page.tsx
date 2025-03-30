@@ -14,16 +14,16 @@ export default function Ecommerce() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 bg-blue-600 text-white shadow-md z-50">
         <h1 className="text-2xl font-bold">Kelompok 3</h1>
-        <div>
+        <div className="flex gap-2">
           <Link
             href="/signup"
             className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-200 transition-all">
             Mulai Sekarang
           </Link>
           <Link
-            href="/about-us"
-            className="px-6 py-3 text-white font-semibold rounded-lg">
-            Tentang Kami
+            href="/aboutus"
+            className="px-6 py-3  text-white font-semibold rounded-lg hover:underline">
+            Tentang kami
           </Link>
         </div>
       </nav>
@@ -66,7 +66,7 @@ export default function Ecommerce() {
       </section>
 
       {/* Call to Action */}
-      <section className="text-center py-20 px-6 bg-blue-600 text-white rounded-xl mx-4 md:mx-0 shadow-lg">
+      <section className="text-center py-20 px-6 bg-blue-600 text-white rounded-xl mx-4 shadow-lg">
         <h2 className="text-4xl font-bold">Mulai Kelola Keuangan Laundry Anda Hari Ini!</h2>
         <p className="mt-6 text-lg max-w-2xl mx-auto font-light">
           Jangan biarkan pencatatan keuangan yang rumit menghambat bisnis Anda. Dengan sistem otomatis dan laporan yang lengkap,
