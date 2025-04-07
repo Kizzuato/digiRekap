@@ -35,6 +35,11 @@ export default function SignInForm() {
   
       const data: { accounts: Account[] } = await res.json();
   
+      const foundAcc = data.accounts.find(
+        (acc: Account) =>
+          acc.email?.toLowerCase() === email.toLowerCase() 
+      );
+      
       const foundUser = data.accounts.find(
         (acc: Account) =>
           acc.email?.toLowerCase() === email.toLowerCase() &&
@@ -52,7 +57,14 @@ export default function SignInForm() {
         }).then(() => {
           router.push("/dashboard");
         });
-      } else {
+      } else if(!foundAcc) {
+        Swal.fire({
+          icon: "error",
+          title: "Account not found",
+          text: "Akun Anda belum terdaftar",
+        });
+      }
+      else {
         Swal.fire({
           icon: "error",
           title: "Login Failed",
@@ -169,3 +181,4 @@ export default function SignInForm() {
     </div>
   );
 }
+
