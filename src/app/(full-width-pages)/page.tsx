@@ -94,9 +94,9 @@ export default function Ecommerce() {
             </p>
           </div>
           <div className="p-8 rounded-xl shadow-lg text-center bg-white dark:bg-gray-800 hover:shadow-xl transition-all">
-            <h3 className="text-2xl font-semibold">Keamanan Data Terjamin</h3>
+            <h3 className="text-2xl font-semibold">Kemudahan Tampilan Penggunaan</h3>
             <p className="mt-4 text-gray-700 dark:text-gray-300">
-              Data Anda aman dengan teknologi enkripsi tingkat tinggi untuk melindungi informasi bisnis Anda.
+              Tampilan yang friendly memudahkan karyawan dan pemilik bisnis untuk mengelola bisnis Anda.
             </p>
           </div>
         </div>
