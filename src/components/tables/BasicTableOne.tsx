@@ -16,20 +16,12 @@ export default function BasicTableOne() {
   }, []);
 
   useEffect(() => {
-    filterData();
-  }, [searchQuery, dateRange, data]);
-
-  const fetchData = async () => {
-    const res = await fetch("/api/sheets");
-    const result = await res.json();
-    setData(result || []);
-  };
-
-  const filterData = () => {
-    let filtered = data.slice(1);
+    let filtered = data.slice(1); // Skip header
 
     if (searchQuery) {
-      filtered = filtered.filter((row) => row[2].toLowerCase().includes(searchQuery.toLowerCase()));
+      filtered = filtered.filter((row) =>
+        row[2].toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
     if (dateRange.start && dateRange.end) {
@@ -41,11 +33,13 @@ export default function BasicTableOne() {
 
     setFilteredData(filtered);
     setCurrentPage(1);
-  };
+  }, [searchQuery, dateRange, data]);
 
-  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearchQuery(e.target.value);
-  // };
+  const fetchData = async () => {
+    const res = await fetch("/api/sheets");
+    const result = await res.json();
+    setData(result || []);
+  };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateRange({ ...dateRange, [e.target.name]: e.target.value });
@@ -66,11 +60,12 @@ export default function BasicTableOne() {
     <div className="container mx-auto p-4">
       {/* Filter Controls */}
       <div className="flex flex-wrap gap-4 mb-4 justify-end">
+        {/* Uncomment ini kalau kamu butuh filter berdasarkan search */}
         {/* <input
           type="text"
           placeholder="Cari nominal..."
           value={searchQuery}
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="border p-2 rounded dark:bg-gray-800 dark:text-white"
         /> */}
         <input
@@ -88,9 +83,9 @@ export default function BasicTableOne() {
           className="border p-2 rounded dark:bg-gray-800 dark:text-white"
         />
         {(searchQuery || dateRange.start || dateRange.end) && (
-        <button onClick={clearFilters} className="dark:text-white">
-          <CloseLineIcon />
-        </button>
+          <button onClick={clearFilters} className="dark:text-white">
+            <CloseLineIcon />
+          </button>
         )}
       </div>
 
@@ -100,7 +95,9 @@ export default function BasicTableOne() {
           <thead>
             <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
               {data[0]?.map((header, i) => (
-                <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">{header}</th>
+                <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
+                  {header}
+                </th>
               ))}
             </tr>
           </thead>
@@ -108,7 +105,9 @@ export default function BasicTableOne() {
             {currentData.map((row, rowIndex) => (
               <tr key={rowIndex} className="border-b dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800 transition">
                 {row.map((cell, i) => (
-                  <td key={i} className="p-3 text-left border-blue-500 dark:border-blue-700">{cell}</td>
+                  <td key={i} className="p-3 text-left border-blue-500 dark:border-blue-700">
+                    {cell}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -125,7 +124,9 @@ export default function BasicTableOne() {
         >
           Prev
         </button>
-        <span className="text-gray-900 dark:text-white">Halaman {currentPage} dari {totalPages}</span>
+        <span className="text-gray-900 dark:text-white">
+          Halaman {currentPage} dari {totalPages}
+        </span>
         <button
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}

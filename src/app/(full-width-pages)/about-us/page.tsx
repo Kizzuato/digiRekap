@@ -64,7 +64,7 @@ export default function AboutUs() {
               <Image
                           width={44}
                           height={44}
-                          src="/images/user/owner.jpg"
+                          src="/images/user/jaki.jpg"
                           alt="User"
                           className="w-24 h-24 mx-auto rounded-full mb-4 border-4 border-blue-500"
                         />

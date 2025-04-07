@@ -1,32 +1,69 @@
-import type { Metadata } from "next";
+'use client';
+// import type { Metadata } from "next";
 import React from "react";
-import Link from "next/link";
 
-export const metadata: Metadata = {
-  title:
-    "Landing Page",
-  description: "This is digiRekap landing page",
-};
+import { useState } from 'react';
+import Link from 'next/link';
+
+// export const metadata: Metadata = {
+//   title:
+//     "Landing Page",
+//   description: "This is digiRekap landing page",
+// };
 
 export default function Ecommerce() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 bg-blue-600 text-white shadow-md z-50">
-        <h1 className="text-2xl font-bold">Kelompok 3</h1>
-        <div>
+      <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 bg-blue-600 text-white shadow-md z-50">
+      <h1 className="text-2xl font-bold">Kelompok 3</h1>
+
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-2">
+        <Link
+          href="/signup"
+          className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-200 transition-all"
+        >
+          Mulai Sekarang
+        </Link>
+        <Link
+          href="/about-us"
+          className="px-6 py-3 text-white font-semibold rounded-lg hover:underline"
+        >
+          Tentang kami
+        </Link>
+      </div>
+
+      {/* Hamburger Menu Button (Mobile) */}
+      <button
+        className="md:hidden text-2xl"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle menu"
+      >
+        {isOpen ? '✖' : '☰'}
+      </button>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="absolute top-20 left-0 w-full bg-blue-600 flex flex-col items-center gap-4 py-4 md:hidden">
           <Link
             href="/signup"
-            className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-200 transition-all">
+            className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-200 transition-all"
+            onClick={() => setIsOpen(false)}
+          >
             Mulai Sekarang
           </Link>
           <Link
             href="/about-us"
-            className="px-6 py-3 text-white font-semibold rounded-lg">
-            Tentang Kami
+            className="px-6 py-3 text-white font-semibold rounded-lg hover:underline"
+            onClick={() => setIsOpen(false)}
+          >
+            Tentang kami
           </Link>
         </div>
-      </nav>
+      )}
+    </nav>
       
       {/* Hero Section */}
       <header className="text-center py-24 px-6 bg-gradient-to-r from-blue-500 to-blue-700 text-white">
