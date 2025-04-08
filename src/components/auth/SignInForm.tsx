@@ -8,10 +8,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-type Account = {
-  email: string;
-  password: string;
-};
+// type Account = {
+//   email: string;
+//   password: string;
+// };
 
 
 

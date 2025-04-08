@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { google } from "googleapis";
 import jwt from "jsonwebtoken";
@@ -21,7 +21,7 @@ export async function GET() {
   const auth = await getAuth();
   const sheets = google.sheets({ version: "v4", auth });
   const spreadsheetId = process.env.SHEET_ID!;
-  const range = "tabel_akun!B2:C20";
+  const range = "tabel_akun!A2:C20";
 
   try {
     const response = await sheets.spreadsheets.values.get({
@@ -36,6 +36,7 @@ export async function GET() {
     }
 
     const accounts = rows.map(([email, password]) => ({
+      name,
       email,
       password,
     }));
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
   const auth = await getAuth();
   const sheets = google.sheets({ version: "v4", auth });
   const spreadsheetId = process.env.SHEET_ID!;
-  const range = "tabel_akun!B2:C20";
+  const range = "tabel_akun!A2:C20";
 
   try {
     const response = await sheets.spreadsheets.values.get({
@@ -66,9 +67,9 @@ export async function POST(req: Request) {
       return new NextResponse("No accounts found", { status: 401 });
     }
 
-    const user = rows.find(([rowEmail, rowPassword]) => {
-      return rowEmail === email && rowPassword === password;
-    });
+    const user = rows.find(
+      ([_, rowEmail, rowPassword]) => rowEmail === email && rowPassword === password
+    );
 
     if (!user) {
       return new NextResponse("Invalid credentials", { status: 401 });
@@ -78,7 +79,10 @@ export async function POST(req: Request) {
     const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: "1d" });
 
     // Simpan token ke cookie
-    const responseLogin = NextResponse.json({ message: "Login success", token });
+    const responseLogin = NextResponse.json({ message: "Login success", user: {
+      name: user[0],
+      email: user[1],
+    }, token });
 
     if (isChecked) {
       responseLogin.cookies.set("token", "valid_user_token", {
