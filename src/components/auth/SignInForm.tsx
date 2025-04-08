@@ -1,5 +1,5 @@
 "use client";
-// import Checkbox from "@/components/form/input/Checkbox";
+import Checkbox from "@/components/form/input/Checkbox";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
@@ -19,7 +19,7 @@ type Account = {
 export default function SignInForm() {
   const router = useRouter(); // tambahkan ini di dalam komponen utama
   const [showPassword, setShowPassword] = useState(false);
-  // const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,27 +27,21 @@ export default function SignInForm() {
     e.preventDefault();
   
     try {
-      const res = await fetch("/api/login");
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, isChecked }),
+      });
   
       if (!res.ok) {
         throw new Error("Failed to fetch data");
       }
-  
-      const data: { accounts: Account[] } = await res.json();
-  
-      const foundAcc = data.accounts.find(
-        (acc: Account) =>
-          acc.email?.toLowerCase() === email.toLowerCase() 
-      );
-      
-      const foundUser = data.accounts.find(
-        (acc: Account) =>
-          acc.email?.toLowerCase() === email.toLowerCase() &&
-          acc.password === password
-      );
-      
-  
-      if (foundUser) {
+      const data = await res.json();
+      console.log("Login success:", data); 
+
+      if (data) {
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -57,7 +51,7 @@ export default function SignInForm() {
         }).then(() => {
           router.push("/dashboard");
         });
-      } else if(!foundAcc) {
+      } else if(!data) {
         Swal.fire({
           icon: "error",
           title: "Account not found",
@@ -144,12 +138,12 @@ export default function SignInForm() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                {/* <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3">
                   <Checkbox checked={isChecked} onChange={setIsChecked} />
                   <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
                     Keep me logged in
                   </span>
-                </div> */}
+                </div>
                 {/* <Link
                   href="/reset-password"
                   className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
