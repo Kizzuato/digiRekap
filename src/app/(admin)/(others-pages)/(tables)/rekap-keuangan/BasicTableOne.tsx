@@ -103,6 +103,33 @@ export default function BasicTableOne() {
   <div className="text-center py-10 text-blue-600 dark:text-blue-400 font-semibold animate-pulse">
     Loading data...
   </div>
+) : filteredData.length === 0 ? (
+  <div className="text-center py-10 text-gray-600 dark:text-gray-300">
+    <div className="overflow-x-auto">
+      <table className="min-w-full border-collapse border-blue-500 dark:border-blue-700 rounded-lg overflow-hidden shadow-md">
+        <thead>
+          <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
+            {data[0]?.map((header, i) => (
+              <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td
+      colSpan={data[0]?.length || 1}
+      className="text-center py-10 text-gray-600 dark:text-gray-300"
+    >
+      Data kosong...
+    </td>
+  </tr>
+</tbody>
+
+      </table>
+    </div>
+  </div>
 ) : (
   <>
     {/* Tabel Data */}
