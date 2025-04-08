@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 
 export default function SignInForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter(); // tambahkan ini di dalam komponen utama
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -25,7 +26,8 @@ export default function SignInForm() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+    setIsLoading(true);
+
     try {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -72,6 +74,8 @@ export default function SignInForm() {
         title: "Oops...",
         text: "Something went wrong while logging in",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -152,8 +156,8 @@ export default function SignInForm() {
                 </Link> */}
               </div>
               <div>
-                <Button type="submit" className="w-full" size="sm">
-                  Sign in
+                <Button type="submit" className="w-full" size="sm" disabled={isLoading}>
+                {isLoading ? "Signing in..." : "Sign in"}
                 </Button>
               </div>
             </div>

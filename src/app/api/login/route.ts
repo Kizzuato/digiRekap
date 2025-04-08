@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     }
 
     const user = rows.find(
-      ([_, rowEmail, rowPassword]) => rowEmail === email && rowPassword === password
+      ([, rowEmail, rowPassword]) => rowEmail === email && rowPassword === password
     );
 
     if (!user) {
