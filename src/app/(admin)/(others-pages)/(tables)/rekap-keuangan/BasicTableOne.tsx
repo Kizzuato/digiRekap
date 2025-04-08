@@ -49,7 +49,7 @@ export default function BasicTableOne() {
       setLoading(false);
     }
   };
-  
+
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateRange({ ...dateRange, [e.target.name]: e.target.value });
@@ -100,86 +100,86 @@ export default function BasicTableOne() {
       </div>
 
       {loading ? (
-  <div className="text-center py-10 text-blue-600 dark:text-blue-400 font-semibold animate-pulse">
-    Loading data...
-  </div>
-) : filteredData.length === 0 ? (
-  <div className="text-center py-10 text-gray-600 dark:text-gray-300">
-    <div className="overflow-x-auto">
-      <table className="min-w-full border-collapse border-blue-500 dark:border-blue-700 rounded-lg overflow-hidden shadow-md">
-        <thead>
-          <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
-            {data[0]?.map((header, i) => (
-              <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-  <tr>
-    <td
-      colSpan={data[0]?.length || 1}
-      className="text-center py-10 text-gray-600 dark:text-gray-300"
-    >
-      Data kosong...
-    </td>
-  </tr>
-</tbody>
+        <div className="text-center py-10 text-blue-600 dark:text-blue-400 font-semibold animate-pulse">
+          Loading data...
+        </div>
+      ) : filteredData.length === 0 ? (
+        <div className="text-center py-10 text-gray-600 dark:text-gray-300">
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse border-blue-500 dark:border-blue-700 rounded-lg overflow-hidden shadow-md">
+              <thead>
+                <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
+                  {data[0]?.map((header, i) => (
+                    <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    colSpan={data[0]?.length || 1}
+                    className="text-center py-10 text-gray-600 dark:text-gray-300"
+                  >
+                    Data kosong...
+                  </td>
+                </tr>
+              </tbody>
 
-      </table>
-    </div>
-  </div>
-) : (
-  <>
-    {/* Tabel Data */}
-    <div className="overflow-x-auto">
-      <table className="min-w-full border-collapse border-blue-500 dark:border-blue-700 rounded-lg overflow-hidden shadow-md">
-        <thead>
-          <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
-            {data[0]?.map((header, i) => (
-              <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {currentData.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-b dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800 transition">
-              {row.map((cell, i) => (
-                <td key={i} className="p-3 text-left border-blue-500 dark:border-blue-700">
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </table>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* Tabel Data */}
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse border-blue-500 dark:border-blue-700 rounded-lg overflow-hidden shadow-md">
+              <thead>
+                <tr className="bg-blue-300 dark:bg-blue-900 text-gray-900 dark:text-white">
+                  {data[0]?.map((header, i) => (
+                    <th key={i} className="p-3 text-left font-semibold border-blue-500 dark:border-blue-700">
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {currentData.map((row, rowIndex) => (
+                  <tr key={rowIndex} className="border-b dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800 transition">
+                    {row.map((cell, i) => (
+                      <td key={i} className="p-3 text-left border-blue-500 dark:border-blue-700">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-    {/* Pagination Controls */}
-    <div className="flex justify-center items-center gap-2 mt-4">
-      <button
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-        disabled={currentPage === 1}
-        className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white rounded disabled:opacity-50 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
-      >
-        Prev
-      </button>
-      <span className="text-gray-900 dark:text-white">
-        Halaman {currentPage} dari {totalPages}
-      </span>
-      <button
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-        disabled={currentPage === totalPages}
-        className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white rounded disabled:opacity-50 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
-      >
-        Next
-      </button>
-    </div>
-  </>
-)}
+          {/* Pagination Controls */}
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white rounded disabled:opacity-50 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+            >
+              Prev
+            </button>
+            <span className="text-gray-900 dark:text-white">
+              Halaman {currentPage} dari {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white rounded disabled:opacity-50 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
 
     </div>
   );
