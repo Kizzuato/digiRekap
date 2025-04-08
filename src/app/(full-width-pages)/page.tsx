@@ -96,7 +96,7 @@ export default function Ecommerce() {
           <div className="p-8 rounded-xl shadow-lg text-center bg-white dark:bg-gray-800 hover:shadow-xl transition-all">
             <h3 className="text-2xl font-semibold">Kemudahan Tampilan Penggunaan</h3>
             <p className="mt-4 text-gray-700 dark:text-gray-300">
-              Tampilan yang friendly memudahkan karyawan dan pemilik bisnis untuk mengelola bisnis Anda.
+              Tampilan yang friendly memudahkan karyawan dan pemilik bisniws untuk mengelola bisnis Anda.
             </p>
           </div>
         </div>

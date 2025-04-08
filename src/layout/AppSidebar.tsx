@@ -40,8 +40,8 @@ const navItems: NavItem[] = [
   },
   {
     icon: <UserIcon />,
-    name: "Data Pembeli",
-    path: "/calendar",
+    name: "Transaksi Pembeli",
+    path: "/rekap-transaksi",
   },
   // {
   //   name: "Forms",

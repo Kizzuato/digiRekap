@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 // const CREDENTIALS_PATH = path.join(process.cwd(), "secreets.json");
 const spreadsheetId = process.env.SHEET_ID;
-const range = "Sheet2!A1:E20";
+const range = "tabel_transaksi!A1:H20";
 
 async function getAuth() {
   return new google.auth.GoogleAuth({
